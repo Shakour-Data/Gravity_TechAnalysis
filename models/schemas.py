@@ -59,13 +59,38 @@ class SignalStrength(str, Enum):
 
 
 class Candle(BaseModel):
-    """Represents a single OHLCV candlestick"""
+    """
+    Represents a single OHLCV candlestick
+    
+    ⚠️ CRITICAL: All input prices and volume MUST be adjusted for:
+    - Stock splits (تقسیم سهام)
+    - Dividends (سود سهام)
+    - Rights issues (افزایش سرمایه)
+    - All corporate actions
+    
+    Using unadjusted data will produce incorrect technical analysis results!
+    Adjustment must be done BEFORE sending data to this microservice.
+    """
     timestamp: datetime
-    open: float
-    high: float
-    low: float
-    close: float
-    volume: float = 0.0
+    open: float = Field(..., description="Opening price (must be adjusted)")
+    high: float = Field(..., description="High price (must be adjusted)")
+    low: float = Field(..., description="Low price (must be adjusted)")
+    close: float = Field(..., description="Closing price (must be adjusted)")
+    volume: float = Field(default=0.0, description="Volume (must be adjusted)")
+    
+    @validator('open', 'high', 'low', 'close')
+    def prices_must_be_positive(cls, v):
+        """Validate prices are positive"""
+        if v <= 0:
+            raise ValueError('Prices must be positive')
+        return v
+    
+    @validator('volume')
+    def volume_must_be_non_negative(cls, v):
+        """Validate volume is non-negative"""
+        if v < 0:
+            raise ValueError('Volume cannot be negative')
+        return v
     
     @validator('high')
     def high_must_be_highest(cls, v, values):
