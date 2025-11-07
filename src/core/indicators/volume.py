@@ -40,7 +40,12 @@ This module implements 10 comprehensive volume indicators:
 import numpy as np
 import pandas as pd
 from typing import List
-from models.schemas import Candle, IndicatorResult, SignalStrength, IndicatorCategory
+from src.core.domain.entities import (
+    Candle,
+    IndicatorResult,
+    CoreSignalStrength as SignalStrength,
+    IndicatorCategory
+)
 
 
 class VolumeIndicators:

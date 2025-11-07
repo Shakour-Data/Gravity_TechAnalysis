@@ -43,7 +43,12 @@ This module implements 10 comprehensive trend indicators:
 import numpy as np
 import pandas as pd
 from typing import List, Tuple
-from models.schemas import Candle, IndicatorResult, SignalStrength, IndicatorCategory
+from src.core.domain.entities import (
+    Candle,
+    IndicatorResult,
+    CoreSignalStrength as SignalStrength,
+    IndicatorCategory
+)
 
 
 class TrendIndicators:

@@ -44,7 +44,12 @@ import numpy as np
 import pandas as pd
 from typing import List, Tuple
 from dataclasses import dataclass
-from models.schemas import Candle, IndicatorResult, SignalStrength, IndicatorCategory
+from src.core.domain.entities import (
+    Candle,
+    IndicatorResult,
+    CoreSignalStrength as SignalStrength,
+    IndicatorCategory
+)
 
 
 @dataclass
