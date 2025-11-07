@@ -2,7 +2,7 @@
 Simple test for Elliott Wave analysis
 """
 from datetime import datetime, timedelta
-from models.schemas import Candle
+from src.core.domain.entities import Candle
 from patterns.elliott_wave import analyze_elliott_waves
 
 # Generate sample candles with wave pattern

@@ -3,7 +3,8 @@ Simple test for complete analysis with Market Phase
 """
 import asyncio
 from datetime import datetime, timedelta
-from models.schemas import Candle, AnalysisRequest
+from src.core.domain.entities import Candle
+from models.schemas import AnalysisRequest
 from services.analysis_service import TechnicalAnalysisService
 import numpy as np
 

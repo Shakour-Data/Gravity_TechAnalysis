@@ -3,7 +3,7 @@ Test suite for Technical Analysis Service
 """
 
 import pytest
-from models.schemas import Candle
+from src.core.domain.entities import Candle
 from datetime import datetime, timedelta
 
 

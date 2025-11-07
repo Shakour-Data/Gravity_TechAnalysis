@@ -2,7 +2,7 @@
 Test Market Phase Analysis based on Dow Theory
 """
 from datetime import datetime, timedelta
-from models.schemas import Candle
+from src.core.domain.entities import Candle
 from analysis.market_phase import analyze_market_phase
 import numpy as np
 

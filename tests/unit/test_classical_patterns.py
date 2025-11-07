@@ -6,7 +6,7 @@ Test Classical Pattern Recognition
 
 import numpy as np
 from datetime import datetime, timedelta
-from models.schemas import Candle
+from src.core.domain.entities import Candle
 from patterns.classical import ClassicalPatterns
 
 

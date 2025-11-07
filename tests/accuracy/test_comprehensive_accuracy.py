@@ -2,12 +2,12 @@
 Comprehensive test showing how accuracy affects decision making
 """
 from datetime import datetime
-from models.schemas import (
-    TechnicalAnalysisResult,
+from src.core.domain.entities import (
     IndicatorResult,
     IndicatorCategory,
-    SignalStrength
+    CoreSignalStrength as SignalStrength
 )
+from models.schemas import TechnicalAnalysisResult
 
 
 def create_indicator(name: str, category: IndicatorCategory, 

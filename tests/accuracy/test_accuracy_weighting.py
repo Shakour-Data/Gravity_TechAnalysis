@@ -2,12 +2,12 @@
 Test script to demonstrate accuracy weighting in overall signal calculation
 """
 from datetime import datetime
-from models.schemas import (
-    TechnicalAnalysisResult,
+from src.core.domain.entities import (
     IndicatorResult,
     IndicatorCategory,
-    SignalStrength
+    CoreSignalStrength as SignalStrength
 )
+from models.schemas import TechnicalAnalysisResult
 
 
 def create_test_indicator(name: str, category: IndicatorCategory, 
