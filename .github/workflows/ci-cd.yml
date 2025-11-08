@@ -163,7 +163,7 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/develop'
     environment:
-      name: dev
+      name: 'dev'
       url: https://dev.gravitytech.ai
     steps:
       - name: Checkout code
