@@ -4,9 +4,11 @@ Event-Driven Messaging - Kafka & RabbitMQ Integration
 ارسال و دریافت پیام‌های async برای communication بین میکروسرویس‌ها
 """
 
+from __future__ import annotations
+
 import json
 import asyncio
-from typing import Optional, Callable, Any, Dict
+from typing import Optional, Callable, Any, Dict, TYPE_CHECKING
 from enum import Enum
 import structlog
 
@@ -16,8 +18,9 @@ try:
     KAFKA_AVAILABLE = True
 except ImportError:
     KAFKA_AVAILABLE = False
-    AIOKafkaProducer = None
-    AIOKafkaConsumer = None
+    if not TYPE_CHECKING:
+        AIOKafkaProducer = None
+        AIOKafkaConsumer = None
 
 # Make aio_pika optional
 try:
@@ -26,6 +29,10 @@ try:
     RABBITMQ_AVAILABLE = True
 except ImportError:
     RABBITMQ_AVAILABLE = False
+    if not TYPE_CHECKING:
+        Channel = None
+        Connection = None
+        Pool = None
     connect_robust = None
     Message = None
     DeliveryMode = None
@@ -63,9 +70,14 @@ class EventPublisher:
     """
     
     def __init__(self):
-        self.kafka_producer: Optional[AIOKafkaProducer] = None
-        self.rabbitmq_connection_pool: Optional[Pool] = None
-        self.rabbitmq_channel_pool: Optional[Pool] = None
+        if TYPE_CHECKING:
+            self.kafka_producer: Optional[AIOKafkaProducer] = None
+            self.rabbitmq_connection_pool: Optional[Pool] = None  # type: ignore[valid-type]
+            self.rabbitmq_channel_pool: Optional[Pool] = None  # type: ignore[valid-type]
+        else:
+            self.kafka_producer = None
+            self.rabbitmq_connection_pool = None
+            self.rabbitmq_channel_pool = None
         self.broker_type: Optional[str] = None
     
     async def initialize(self, broker_type: str = "kafka"):
@@ -111,10 +123,10 @@ class EventPublisher:
         try:
             rabbitmq_url = getattr(settings, 'rabbitmq_url', 'amqp://guest:guest@localhost/')
             
-            async def get_connection() -> Connection:
+            async def get_connection() -> "Connection":  # type: ignore[valid-type]
                 return await connect_robust(rabbitmq_url)
             
-            async def get_channel() -> Channel:
+            async def get_channel() -> "Channel":  # type: ignore[valid-type]
                 async with self.rabbitmq_connection_pool.acquire() as connection:
                     return await connection.channel()
             
@@ -242,7 +254,7 @@ class EventConsumer:
     
     def __init__(self):
         self.kafka_consumer: Optional[AIOKafkaConsumer] = None
-        self.rabbitmq_connection_pool: Optional[Pool] = None
+        self.rabbitmq_connection_pool: Optional[Pool] = None  # type: ignore[valid-type]
         self.broker_type: Optional[str] = None
         self.handlers: Dict[str, Callable] = {}
     
@@ -272,7 +284,7 @@ class EventConsumer:
         """راه‌اندازی RabbitMQ Consumer"""
         rabbitmq_url = getattr(settings, 'rabbitmq_url', 'amqp://guest:guest@localhost/')
         
-        async def get_connection() -> Connection:
+        async def get_connection() -> Connection:  # type: ignore[valid-type]
             return await connect_robust(rabbitmq_url)
         
         self.rabbitmq_connection_pool = Pool(get_connection, max_size=10)
