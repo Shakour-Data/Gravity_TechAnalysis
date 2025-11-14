@@ -21,7 +21,7 @@ class TestServiceDiscoveryInitialization:
     @pytest.mark.asyncio
     async def test_eureka_initialization(self, service_discovery):
         """Test Eureka client initialization."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.init = Mock()
             
             await service_discovery.initialize()
@@ -32,7 +32,7 @@ class TestServiceDiscoveryInitialization:
     @pytest.mark.asyncio
     async def test_consul_initialization(self, service_discovery):
         """Test Consul client initialization."""
-        with patch('middleware.service_discovery.consul') as mock_consul:
+        with patch('gravity_tech.middleware.service_discovery.consul') as mock_consul:
             mock_consul.Consul = Mock(return_value=AsyncMock())
             
             service_discovery.discovery_type = "consul"
@@ -47,7 +47,7 @@ class TestServiceRegistration:
     @pytest.mark.asyncio
     async def test_register_with_eureka(self, service_discovery):
         """Test service registration with Eureka."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.init = Mock()
             
             await service_discovery.initialize()
@@ -59,7 +59,7 @@ class TestServiceRegistration:
     @pytest.mark.asyncio
     async def test_register_with_metadata(self, service_discovery):
         """Test service registration includes metadata."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.init = Mock()
             
             await service_discovery.initialize()
@@ -75,7 +75,7 @@ class TestHealthReporting:
     @pytest.mark.asyncio
     async def test_health_check_reporting(self, service_discovery):
         """Test periodic health check reporting."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.init = Mock()
             
             await service_discovery.initialize()
@@ -90,7 +90,7 @@ class TestServiceDiscovery:
     @pytest.mark.asyncio
     async def test_discover_service_eureka(self, service_discovery):
         """Test discovering a service via Eureka."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.get_service = Mock(return_value={
                 'host': 'localhost',
                 'port': 8001,
@@ -104,7 +104,7 @@ class TestServiceDiscovery:
     @pytest.mark.asyncio
     async def test_discover_nonexistent_service(self, service_discovery):
         """Test discovering non-existent service returns None."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.get_service = Mock(return_value=None)
             
             result = await service_discovery.discover_service('nonexistent')
@@ -118,7 +118,7 @@ class TestGracefulShutdown:
     @pytest.mark.asyncio
     async def test_deregister_on_shutdown(self, service_discovery):
         """Test service deregistration on shutdown."""
-        with patch('middleware.service_discovery.eureka_client') as mock_eureka:
+        with patch('gravity_tech.middleware.service_discovery.eureka_client') as mock_eureka:
             mock_eureka.init = Mock()
             mock_eureka.stop = Mock()
             
@@ -137,7 +137,7 @@ class TestConsulIntegration:
         """Test service registration with Consul."""
         service_discovery.discovery_type = "consul"
         
-        with patch('middleware.service_discovery.consul.Consul') as mock_consul_class:
+        with patch('gravity_tech.middleware.service_discovery.consul.Consul') as mock_consul_class:
             mock_consul_instance = AsyncMock()
             mock_consul_class.return_value = mock_consul_instance
             
@@ -150,7 +150,7 @@ class TestConsulIntegration:
         """Test health check registration with Consul."""
         service_discovery.discovery_type = "consul"
         
-        with patch('middleware.service_discovery.consul.Consul') as mock_consul_class:
+        with patch('gravity_tech.middleware.service_discovery.consul.Consul') as mock_consul_class:
             mock_consul_instance = AsyncMock()
             mock_consul_instance.agent = AsyncMock()
             mock_consul_class.return_value = mock_consul_instance
