@@ -5,7 +5,7 @@ Date: November 8, 2025
 """
 import numpy as np
 import time
-from services.performance_optimizer import fast_tsi, fast_schaff_trend_cycle, fast_connors_rsi
+from gravity_tech.services.performance_optimizer import fast_tsi, fast_schaff_trend_cycle, fast_connors_rsi
 
 
 def benchmark_momentum_indicators():

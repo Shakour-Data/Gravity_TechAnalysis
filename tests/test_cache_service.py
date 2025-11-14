@@ -7,7 +7,7 @@ Tests Redis cache manager with connection pooling.
 import pytest
 import asyncio
 from unittest.mock import Mock, AsyncMock, patch
-from services.cache_service import CacheManager, cached
+from gravity_tech.services.cache_service import CacheManager, cached
 
 
 @pytest.fixture

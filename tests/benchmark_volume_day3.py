@@ -17,7 +17,7 @@ import os
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from services.performance_optimizer import (
+from gravity_tech.services.performance_optimizer import (
     fast_volume_weighted_macd,
     fast_ease_of_movement,
     fast_force_index

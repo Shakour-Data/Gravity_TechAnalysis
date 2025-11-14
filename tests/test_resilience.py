@@ -6,7 +6,7 @@ Tests Circuit Breaker, Retry, Timeout, and Bulkhead patterns.
 
 import pytest
 import asyncio
-from middleware.resilience import (
+from gravity_tech.middleware.resilience import (
     CircuitBreaker,
     retry_with_backoff,
     timeout,

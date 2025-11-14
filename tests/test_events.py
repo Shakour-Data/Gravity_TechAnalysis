@@ -6,7 +6,7 @@ Tests Kafka and RabbitMQ integration.
 
 import pytest
 from unittest.mock import Mock, AsyncMock, patch, MagicMock
-from middleware.events import EventPublisher, EventConsumer, MessageType
+from gravity_tech.middleware.events import EventPublisher, EventConsumer, MessageType
 
 
 @pytest.fixture

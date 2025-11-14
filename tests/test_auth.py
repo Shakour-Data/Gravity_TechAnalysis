@@ -8,7 +8,7 @@ import pytest
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 from fastapi import HTTPException
-from middleware.auth import (
+from gravity_tech.middleware.auth import (
     create_access_token,
     verify_token,
     get_current_user,

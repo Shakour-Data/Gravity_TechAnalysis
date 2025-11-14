@@ -12,12 +12,12 @@ import os
 # اضافه کردن مسیر پروژه
 sys.path.insert(0, os.path.abspath('.'))
 
-from ml.multi_horizon_feature_extraction import MultiHorizonFeatureExtractor
-from ml.multi_horizon_momentum_features import MultiHorizonMomentumFeatureExtractor
-from ml.multi_horizon_weights import MultiHorizonWeightLearner
-from ml.multi_horizon_analysis import MultiHorizonAnalyzer
-from ml.multi_horizon_momentum_analysis import MultiHorizonMomentumAnalyzer
-from ml.combined_trend_momentum_analysis import CombinedTrendMomentumAnalyzer
+from gravity_tech.ml.multi_horizon_feature_extraction import MultiHorizonFeatureExtractor
+from gravity_tech.ml.multi_horizon_momentum_features import MultiHorizonMomentumFeatureExtractor
+from gravity_tech.ml.multi_horizon_weights import MultiHorizonWeightLearner
+from gravity_tech.ml.multi_horizon_analysis import MultiHorizonAnalyzer
+from gravity_tech.ml.multi_horizon_momentum_analysis import MultiHorizonMomentumAnalyzer
+from gravity_tech.ml.combined_trend_momentum_analysis import CombinedTrendMomentumAnalyzer
 
 
 def create_realistic_market_data(

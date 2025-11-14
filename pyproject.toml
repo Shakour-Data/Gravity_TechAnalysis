@@ -78,7 +78,10 @@ Issues = "https://github.com/GravityWavesMl/Gravity_TechAnalysis/issues"
 Changelog = "https://github.com/GravityWavesMl/Gravity_TechAnalysis/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
-packages = ["gravity_tech_analysis"]
+packages = {find = {where = ["src"]}}
+
+[tool.setuptools.package-dir]
+"" = "src"
 
 [tool.black]
 line-length = 100

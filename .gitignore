@@ -23,7 +23,8 @@ wheels/
 venv/
 ENV/
 env/
-.venv
+.venv/
+*.pyc
 
 # IDE
 .vscode/

@@ -20,10 +20,10 @@ from datetime import datetime
 # Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ml.advanced_pattern_training import AdvancedPatternTrainer
-from ml.model_interpretability import PatternModelInterpreter, SHAP_AVAILABLE
-from ml.backtesting import PatternBacktester, TradeResult
-from patterns.harmonic import HarmonicPatternDetector
+from gravity_tech.ml.advanced_pattern_training import AdvancedPatternTrainer
+from gravity_tech.ml.model_interpretability import PatternModelInterpreter, SHAP_AVAILABLE
+from gravity_tech.ml.backtesting import PatternBacktester, TradeResult
+from gravity_tech.patterns.harmonic import HarmonicPatternDetector
 
 
 # ============================================================================

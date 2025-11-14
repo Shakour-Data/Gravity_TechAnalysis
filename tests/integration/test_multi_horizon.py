@@ -19,9 +19,9 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 from src.core.domain.entities import Candle
-from ml.train_multi_horizon import train_multi_horizon_system, load_trained_model, create_realistic_market_data
-from ml.multi_horizon_feature_extraction import MultiHorizonFeatureExtractor
-from ml.multi_horizon_analysis import MultiHorizonTrendAnalyzer
+from gravity_tech.ml.train_multi_horizon import train_multi_horizon_system, load_trained_model, create_realistic_market_data
+from gravity_tech.ml.multi_horizon_feature_extraction import MultiHorizonFeatureExtractor
+from gravity_tech.ml.multi_horizon_analysis import MultiHorizonTrendAnalyzer
 import json
 
 

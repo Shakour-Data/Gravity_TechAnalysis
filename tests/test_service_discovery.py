@@ -6,7 +6,7 @@ Tests Eureka and Consul integration.
 
 import pytest
 from unittest.mock import Mock, AsyncMock, patch, MagicMock
-from middleware.service_discovery import ServiceDiscovery
+from gravity_tech.middleware.service_discovery import ServiceDiscovery
 
 
 @pytest.fixture

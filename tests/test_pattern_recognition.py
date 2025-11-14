@@ -19,7 +19,7 @@ import os
 # Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from patterns.harmonic import (
+from gravity_tech.patterns.harmonic import (
     HarmonicPatternDetector,
     PatternType,
     PatternDirection,
@@ -29,8 +29,8 @@ from patterns.harmonic import (
     detect_crab,
     detect_all_harmonic_patterns
 )
-from ml.pattern_features import PatternFeatureExtractor, extract_pattern_features_batch
-from ml.pattern_classifier import (
+from gravity_tech.ml.pattern_features import PatternFeatureExtractor, extract_pattern_features_batch
+from gravity_tech.ml.pattern_classifier import (
     PatternClassifier,
     PatternConfidenceScorer,
     generate_synthetic_training_data

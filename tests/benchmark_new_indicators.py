@@ -8,7 +8,7 @@ Date: November 8, 2025
 
 import numpy as np
 import time
-from services.performance_optimizer import (
+from gravity_tech.services.performance_optimizer import (
     fast_donchian_channels,
     fast_aroon,
     fast_vortex_indicator,
