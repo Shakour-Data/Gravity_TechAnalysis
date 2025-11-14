@@ -27,7 +27,7 @@ class TestEventPublisher:
     @pytest.mark.asyncio
     async def test_kafka_publisher_initialization(self, event_publisher):
         """Test Kafka publisher initialization."""
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer:
             mock_instance = AsyncMock()
             mock_producer.return_value = mock_instance
             
@@ -39,7 +39,7 @@ class TestEventPublisher:
     @pytest.mark.asyncio
     async def test_rabbitmq_publisher_initialization(self, event_publisher):
         """Test RabbitMQ publisher initialization."""
-        with patch('middleware.events.aio_pika.connect_robust') as mock_connect:
+        with patch('gravity_tech.middleware.events.aio_pika.connect_robust') as mock_connect:
             mock_connection = AsyncMock()
             mock_channel = AsyncMock()
             mock_connection.channel.return_value = mock_channel
@@ -52,7 +52,7 @@ class TestEventPublisher:
     @pytest.mark.asyncio
     async def test_publish_kafka_event(self, event_publisher):
         """Test publishing event to Kafka."""
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer:
             mock_instance = AsyncMock()
             mock_producer.return_value = mock_instance
             
@@ -69,7 +69,7 @@ class TestEventPublisher:
     @pytest.mark.asyncio
     async def test_publish_rabbitmq_event(self, event_publisher):
         """Test publishing event to RabbitMQ."""
-        with patch('middleware.events.aio_pika.connect_robust') as mock_connect:
+        with patch('gravity_tech.middleware.events.aio_pika.connect_robust') as mock_connect:
             mock_connection = AsyncMock()
             mock_channel = AsyncMock()
             mock_connection.channel.return_value = mock_channel
@@ -92,7 +92,7 @@ class TestEventConsumer:
     @pytest.mark.asyncio
     async def test_kafka_consumer_initialization(self, event_consumer):
         """Test Kafka consumer initialization."""
-        with patch('middleware.events.AIOKafkaConsumer') as mock_consumer:
+        with patch('gravity_tech.middleware.events.AIOKafkaConsumer') as mock_consumer:
             mock_instance = AsyncMock()
             mock_consumer.return_value = mock_instance
             
@@ -103,7 +103,7 @@ class TestEventConsumer:
     @pytest.mark.asyncio
     async def test_rabbitmq_consumer_initialization(self, event_consumer):
         """Test RabbitMQ consumer initialization."""
-        with patch('middleware.events.aio_pika.connect_robust') as mock_connect:
+        with patch('gravity_tech.middleware.events.aio_pika.connect_robust') as mock_connect:
             mock_connection = AsyncMock()
             mock_channel = AsyncMock()
             mock_queue = AsyncMock()
@@ -168,7 +168,7 @@ class TestEventSerialization:
     @pytest.mark.asyncio
     async def test_event_serialization(self, event_publisher):
         """Test events are properly serialized."""
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer:
             mock_instance = AsyncMock()
             mock_producer.return_value = mock_instance
             
@@ -193,7 +193,7 @@ class TestErrorHandling:
     @pytest.mark.asyncio
     async def test_publish_handles_connection_error(self, event_publisher):
         """Test publisher handles connection errors gracefully."""
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer:
             mock_instance = AsyncMock()
             mock_instance.send.side_effect = Exception("Connection failed")
             mock_producer.return_value = mock_instance
@@ -230,7 +230,7 @@ class TestConnectionPooling:
     @pytest.mark.asyncio
     async def test_rabbitmq_connection_pool(self, event_publisher):
         """Test RabbitMQ uses connection pooling."""
-        with patch('middleware.events.aio_pika.connect_robust') as mock_connect:
+        with patch('gravity_tech.middleware.events.aio_pika.connect_robust') as mock_connect:
             mock_connection = AsyncMock()
             mock_channel = AsyncMock()
             mock_connection.channel.return_value = mock_channel
@@ -248,7 +248,7 @@ class TestGracefulShutdown:
     @pytest.mark.asyncio
     async def test_publisher_shutdown(self, event_publisher):
         """Test publisher graceful shutdown."""
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer:
             mock_instance = AsyncMock()
             mock_producer.return_value = mock_instance
             
@@ -261,7 +261,7 @@ class TestGracefulShutdown:
     @pytest.mark.asyncio
     async def test_consumer_shutdown(self, event_consumer):
         """Test consumer graceful shutdown."""
-        with patch('middleware.events.AIOKafkaConsumer') as mock_consumer:
+        with patch('gravity_tech.middleware.events.AIOKafkaConsumer') as mock_consumer:
             mock_instance = AsyncMock()
             mock_consumer.return_value = mock_instance
             
@@ -287,8 +287,8 @@ class TestEventIntegration:
         async def handler(data):
             received_events.append(data)
         
-        with patch('middleware.events.AIOKafkaProducer') as mock_producer, \
-             patch('middleware.events.AIOKafkaConsumer') as mock_consumer:
+        with patch('gravity_tech.middleware.events.AIOKafkaProducer') as mock_producer, \
+             patch('gravity_tech.middleware.events.AIOKafkaConsumer') as mock_consumer:
             
             mock_prod_instance = AsyncMock()
             mock_cons_instance = AsyncMock()
