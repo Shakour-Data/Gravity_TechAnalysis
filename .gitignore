@@ -85,3 +85,4 @@ CLEANUP_REPORT.md
 
 # Deprecated files
 deprecated/
+coverage.xml
