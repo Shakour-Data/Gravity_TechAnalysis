@@ -31,6 +31,8 @@ from typing import Optional
 class Settings(BaseSettings):
     """Application settings loaded from environment variables"""
     
+    model_config = {"env_file": ".env", "case_sensitive": False}
+    
     # Application
     app_name: str = "technical-analysis-service"
     app_version: str = "1.0.0"
@@ -79,10 +81,6 @@ class Settings(BaseSettings):
     max_candles: int = 1000
     parallel_processing: bool = True
     max_workers: int = 10
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
 
 
 settings = Settings()

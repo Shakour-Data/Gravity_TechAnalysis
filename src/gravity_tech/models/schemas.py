@@ -401,17 +401,17 @@ class TechnicalAnalysisResult(BaseModel):
 
 class AnalysisRequest(BaseModel):
     """Request for technical analysis"""
-    symbol: str = Field(..., description="Trading symbol", example="BTCUSDT")
+    symbol: str = Field(..., description="Trading symbol", json_schema_extra={"example": "BTCUSDT"})
     timeframe: str = Field(
         ...,
         description="Timeframe",
-        example="1h",
+        json_schema_extra={"example": "1h"},
         pattern="^(1m|5m|15m|30m|1h|4h|1d|1w)$"
     )
     candles: List[Candle] = Field(
         ...,
         description="Historical candle data",
-        min_items=50
+        min_length=50
     )
     indicators: Optional[List[str]] = Field(
         default=None,

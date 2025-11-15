@@ -17,7 +17,7 @@ from collections import defaultdict
 import jwt
 from datetime import datetime, timedelta
 import structlog
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 from gravity_tech.config.settings import settings
 
@@ -244,7 +244,8 @@ class SecureAnalysisRequest(BaseModel):
     timeframe: str
     max_candles: Optional[int] = 100
     
-    @validator('symbol')
+    @field_validator('symbol')
+    @classmethod
     def validate_symbol(cls, v):
         """Validation برای symbol"""
         if not v or len(v) > 20:
@@ -256,7 +257,8 @@ class SecureAnalysisRequest(BaseModel):
         
         return v.upper()
     
-    @validator('timeframe')
+    @field_validator('timeframe')
+    @classmethod
     def validate_timeframe(cls, v):
         """Validation برای timeframe"""
         valid_timeframes = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w']
@@ -266,7 +268,8 @@ class SecureAnalysisRequest(BaseModel):
         
         return v
     
-    @validator('max_candles')
+    @field_validator('max_candles')
+    @classmethod
     def validate_max_candles(cls, v):
         """Validation برای تعداد کندل‌ها"""
         if v is not None:
